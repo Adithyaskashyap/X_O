@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online XO Game</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div id="choice-modal" class="modal">
+        <div class="modal-content">
+            <h2>Choose Your Symbol</h2>
+            <div class="choice-buttons">
+                <button onclick="pickSymbol('X')">Play as X</button>
+                <button onclick="pickSymbol('O')">Play as O</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="task-title">Game Over</h2>
+            <p id="task-desc"></p>
+            
+            <div id="winner-input-area" style="display: none;">
+                <input type="text" id="task-input" placeholder="Type their punishment here..." autocomplete="off">
+                <button onclick="submitTask()">Send Penalty</button>
+                <div id="winner-view-ack" style="margin-top: 15px; color: #ffcc00; font-style: italic;"></div>
+            </div>
+            
+            <div id="loser-read-area" style="display: none;">
+                <h3 id="assigned-task" style="color: #ff3366; font-size: 1.5rem;">Waiting for winner...</h3>
+                <div id="loser-ack-input-area" style="display: none;">
+                    <input type="text" id="ack-input" placeholder="Type your reply/excuse..." autocomplete="off" style="width: 80%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 2px solid #ff3366; background: #1a1a1a; color: #fff; text-align: center;">
+                    <br>
+                    <button onclick="submitAck()" style="background-color: #ff3366; color: white;">Send Acknowledgment</button>
+                </div>
+            </div>
+            <br>
+            <button id="modal-close-btn" onclick="closeTaskModal()" style="display:none; background-color: #666; margin-top: 10px;">Close Window</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Online Tic-Tac-Toe</h1>
+        <div id="status">Connecting to server...</div>
+        <div class="board" id="board">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+        <button id="reset-btn">Restart Game</button>
+    </div>
+    <script src="/static/app.js"></script>
+</body>
+</html>
