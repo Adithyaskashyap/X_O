@@ -21,7 +21,15 @@ const assignedTaskText = document.getElementById("assigned-task");
 const modalCloseBtn = document.getElementById("modal-close-btn");
 
 socket.onmessage = (event) => {
-    const data = JSON.parse(event.data);
+    let data;
+    
+    // SAFE PARSING: Prevents the "Expected a JSON object" crash if non-JSON data arrives
+    try {
+        data = JSON.parse(event.data);
+    } catch (error) {
+        console.warn("Received a non-JSON payload from server:", event.data);
+        return; 
+    }
 
     if (data.error) {
         statusDiv.innerText = data.error;
@@ -134,7 +142,7 @@ function submitTask() {
     }
 }
 
-// NEW: Send acknowledgment string to server
+// Send acknowledgment string to server
 function submitAck() {
     const ackText = document.getElementById("ack-input").value;
     if (ackText.trim() !== "") {
